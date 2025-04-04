@@ -1,0 +1,8 @@
+.container {
+    padding: 40px;
+}  
+
+#vis-black-hat svg {
+    margin: 2rem 0;
+    border: 1px solid #ccc; /*otherwise you can't see this part*/
+}
