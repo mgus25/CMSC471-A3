@@ -1,46 +1,247 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>Assignment 3: White Hat/Black Hat Visualization</title>
-  <link rel="stylesheet" href="css/styles.css" />
-</head>
-<body>
-  <div class="container">
-    <h1>Assignment 3: White Hat/Black Hat Visualization</h1>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Assignment 3: White Hat/Black Hat Visualization</title>
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Assignment 3: White Hat/Black Hat Visualization</h1>
 
-    <h2>Black Hat Visulization</h3>
     <div id="vis-black-hat"></div>
     <div id="toggle-buttons">
         <button id="btn-race">By Race</button>
         <button id="btn-gender">By Gender</button>
-    </div>    
-    <p>
-        This visualization shows the number of complaints filed against police officers. The graph provides insight 
-        into how these complaints break down by officer demographics. The first view of the graph shows complaints 
-        by officer race, while the second view shows complaints by officer gender. This is a black hat visualization, 
-        so the goal during the design process was to give a false impression regarding which demographics receive 
-        the most complaints. Two techniques were utilized to achieve this effect:
-      </p>
-      <ol>
-        <li>Labels: Axis manipulation</li>
-        <li>Encoding: Color choice</li>
-      </ol>
-      <p>
-        You will notice that the y-axis is actually flipped. This means the maximum number of complaints appears at 
-        the bottom of the graph, while zero complaints is at the top. This results in more complaints being 
-        represented with small bar lines and fewer complaints being represented with large bar lines. This is 
-        counterintuitive and contrary to bar chart norms, meaning the viewer may reach a false conclusion about 
-        the data unless they inspect the y-axis values. The second misleading component is the color encoding. 
-        We commonly associate green with "good" and red with "bad." In the visualization, the highest number of 
-        complaints is shown in green while the lowest number of complaints is shown in red. This is contrary to 
-        common color conventions and reinforces the faulty perception implied by the previous manipulation.
-      </p>
-      
-      
+    </div>   
+    <div class="visualization-description">
+        <div class="legend">
+          <h3>Visualization Legend</h3>
+          <div class="legend-item">
+            <div class="color-box" style="background-color: green"></div>
+            <div class="legend-text">
+              <p>
+                <strong>Max Complaints</strong>: This demographic received the most complaints. 
+              </p>
+            </div>
+          </div>
+          <div class="legend-item">
+            <div class="color-box" style="background-color: red"></div>
+            <div class="legend-text">
+              <p>
+                <strong>Min Complaints</strong>: This demographic received the least complaints. 
+              </p>
+            </div>
+          </div>
+          <div class="legend-item">
+            <div class="color-box" style="background-color: #7f7f7f"></div>
+            <div class="legend-text">
+              <p>
+                <strong>Other</strong>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="instructions">
+            <h3>How to Use This Visualization</h3>
+            <p>
+                Each bar represents the number of complaints that a given officer demographic received.
+            </p>
+            <p>
+                The default view groups by officer race, but you can toggle to a view based on officer gender using the buttons at the bottom of the visualization.
+            </p>   
+        </div>
+      </div> 
   </div>
 
-  <script src="https://d3js.org/d3.v7.min.js"></script>
-  <script src="js/script.js"></script>
-</body>
+      <div class="data-summary">
+        <div class="summary-stat">
+          <h3 id="total-complaints">0</h3>
+          <p>Total Complaints</p>
+        </div>
+        <div class="summary-stat">
+          <h3 id="substantiated-percent">0%</h3>
+          <p>Substantiated</p>
+        </div>
+        <div class="summary-stat">
+          <h3 id="exonerated-percent">0%</h3>
+          <p>Exonerated</p>
+        </div>
+        <div class="summary-stat">
+          <h3 id="unsubstantiated-percent">0%</h3>
+          <p>Unsubstantiated</p>
+        </div>
+      </div>
+
+      <div class="controls">
+        <div id="year-filter"></div>
+        <button id="reset-view">Reset View</button>
+      </div>
+
+      <div id="vis-white-hat"></div>
+
+      <div class="visualization-description">
+        <div class="legend">
+          <h3>Visualization Legend</h3>
+          <div class="legend-item">
+            <div class="color-box" style="background-color: #1f77b4"></div>
+            <div class="legend-text">
+              <p>
+                <strong>Substantiated</strong>: The alleged conduct occurred and
+                it violated the rules.
+              </p>
+            </div>
+          </div>
+          <div class="legend-item">
+            <div class="color-box" style="background-color: #2ca02c"></div>
+            <div class="legend-text">
+              <p>
+                <strong>Exonerated</strong>: The alleged conduct occurred but
+                did not violate the NYPD's rules.
+              </p>
+            </div>
+          </div>
+          <div class="legend-item">
+            <div class="color-box" style="background-color: #7f7f7f"></div>
+            <div class="legend-text">
+              <p>
+                <strong>Unsubstantiated</strong>: The CCRB could not conclude
+                both that the conduct occurred and that it broke the rules.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="instructions">
+          <h3>How to Use This Visualization</h3>
+          <p>
+            Each circle represents a single complaint investigated by the
+            Civilian Complaint Review Board (CCRB).
+          </p>
+          <p>
+            This visualization groups complaints by outcome, type of misconduct,
+            precinct, and specific allegation.
+          </p>
+          <p>
+            Click on circles to zoom in and explore details. Use the back button
+            to go up one level.
+          </p>
+          <p>
+            <strong>Note</strong>: All 'Substantiated' sub-categories (e.g.,
+            Charges, Command Discipline) are grouped together.
+          </p>
+        </div>
+      </div>
+
+      <div class="data-source">
+        <h3>Data Source & Methodology</h3>
+        <p>
+          This visualization uses data from the NYC Civilian Complaint Review
+          Board (CCRB), which investigates complaints against NYPD officers.
+          Each circle represents a complaint investigated by the CCRB, grouped
+          by outcome, misconduct type, precinct, and specific allegation.
+        </p>
+        <p>
+          <strong>Note:</strong> The data reflects only formal complaints filed
+          with the CCRB and may not represent all interactions with police, as
+          not all incidents result in formal complaints. All "Substantiated"
+          sub-categories (e.g., Charges, Command Discipline) are grouped
+          together for clarity.
+        </p>
+      </div>
+
+      <!-- White Hat Visualization Write-up -->
+      <div class="visualization-writeup">
+        <h3>White Hat Visualization Write-up - Alston Chan</h3>
+        <p>
+          This visualization presents data from the Civilian Complaints Against
+          New York City Police Officers dataset, showcasing complaints filed by
+          civilians and investigated by the Civilian Complaint Review Board
+          (CCRB). The dataset contains over 12,000 civilian complaints with
+          information about alleged misconduct, demographic details, and
+          complaint outcomes.
+        </p>
+
+        <p>
+          The visualization clearly communicates how the data has been
+          transformed. The substantiated complaints (those where misconduct was
+          confirmed) are consolidated into a single category for clarity, with
+          original subcategories preserved in the tooltips. This simplification
+          makes the overall patterns more digestible while maintaining access to
+          the original data granularity.
+        </p>
+
+        <p>
+          I chose a hierarchical circle packing visualization to allow users to
+          explore the data at multiple levels of detail, starting with the three
+          main outcomes (Substantiated, Exonerated, and Unsubstantiated) and
+          drilling down through misconduct types, precincts, and specific
+          allegations. This progressive disclosure prevents overwhelming the
+          viewer while enabling deep exploration.
+        </p>
+
+        <p>
+          The visualization features clear zoom functionality that allows users
+          to click on areas of interest and explore specific subsets of
+          complaints. A back button and reset view option prevent users from
+          getting lost in the data. Tooltips provide detailed information about
+          each complaint, including demographic information and specific
+          outcomes.
+        </p>
+
+        <p>
+          Summary statistics at the top provide an immediate overview of key
+          metrics. The year filter allows users to focus on specific time
+          periods without removing this context. The visualization includes a
+          comprehensive legend and instructions section that explains how to
+          interpret the data and interact with the visualization.
+        </p>
+
+        <p>
+          Color coding is consistent and accessible, using distinguishable
+          colors for each outcome category. The data source section acknowledges
+          the limitations of the dataset, noting that it only includes formal
+          complaints and may not represent all police interactions. All
+          potentially misleading elements are avoided, with clear titles and
+          labels that accurately describe what is being shown.
+        </p>
+
+        <p>
+          The zoomable circle packing visualization was adapted from the
+          following Observable link:
+          <a href="https://observablehq.com/@d3/zoomable-circle-packing"
+            >Zoomable circle packing</a
+          >
+        </p>
+      </div>
+
+      <div class="visualization-writeup">
+        <h3>Black Hat Visualization Write-up - Maia Gustafson</h3>
+        <p>
+            This visualization shows the number of complaints filed against police officers. The graph provides insight 
+            into how these complaints break down by officer demographics. The first view of the graph shows complaints 
+            by officer race, while the second view shows complaints by officer gender. This is a black hat visualization, 
+            so the goal during the design process was to give a false impression regarding which demographics receive 
+            the most complaints. Two techniques were utilized to achieve this effect:
+          </p>
+          <ol>
+            <li>Labels: Axis manipulation</li>
+            <li>Encoding: Color choice</li>
+          </ol>
+          <p>
+            You will notice that the y-axis is actually flipped. This means the maximum number of complaints appears at 
+            the bottom of the graph, while zero complaints is at the top. This results in more complaints being 
+            represented with small bar lines and fewer complaints being represented with large bar lines. This is 
+            counterintuitive and contrary to bar chart norms, meaning the viewer may reach a false conclusion about 
+            the data unless they inspect the y-axis values. The second misleading component is the color encoding. 
+            We commonly associate green with "good" and red with "bad." In the visualization, the highest number of 
+            complaints is shown in green while the lowest number of complaints is shown in red. This is contrary to 
+            common color conventions and reinforces the faulty perception implied by the previous manipulation.
+          </p>
+      </div>
+    </div>
+
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/white_hat.js"></script>
+  </body>
 </html>

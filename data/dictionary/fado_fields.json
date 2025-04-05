@@ -1,0 +1,364 @@
+{
+  "Offensive Language": {
+    "Black": {
+      "count": 56
+    },
+    "Ethnicity": {
+      "count": 84
+    },
+    "Gender": {
+      "count": 115
+    },
+    "Gender Identity": {
+      "count": 4
+    },
+    "Hispanic": {
+      "count": 9
+    },
+    "Jewish": {
+      "count": 2
+    },
+    "Oriental": {
+      "count": 1
+    },
+    "Other": {
+      "count": 48
+    },
+    "Other - Ethnic Slur": {
+      "count": 11
+    },
+    "Other Asian": {
+      "count": 1
+    },
+    "Physical disability": {
+      "count": 15
+    },
+    "Race": {
+      "count": 307
+    },
+    "Religion": {
+      "count": 14
+    },
+    "Sexual orientation": {
+      "count": 78
+    },
+    "White": {
+      "count": 8
+    }
+  },
+  "Discourtesy": {
+    "Word": {
+      "count": 3942
+    },
+    "Action": {
+      "count": 316
+    },
+    "Curse": {
+      "count": 202
+    },
+    "Nasty Words": {
+      "count": 88
+    },
+    "Gesture": {
+      "count": 51
+    },
+    "Demeanor/tone": {
+      "count": 38
+    },
+    "Other- Discourtesy": {
+      "count": 18
+    },
+    "Other": {
+      "count": 8
+    },
+    "Rude Gesture": {
+      "count": 7
+    },
+    "Profane Gesture": {
+      "count": 3
+    },
+    "Gay/Lesbian Slur": {
+      "count": 3
+    },
+    "Sexist Remark": {
+      "count": 1
+    }
+  },
+  "Abuse of Authority": {
+    "Stop": {
+      "count": 2300
+    },
+    "Search (of person)": {
+      "count": 2047
+    },
+    "Frisk": {
+      "count": 1926
+    },
+    "Premises entered and/or searched": {
+      "count": 1555
+    },
+    "Refusal to provide name/shield number": {
+      "count": 1483
+    },
+    "Vehicle search": {
+      "count": 1405
+    },
+    "Threat of arrest": {
+      "count": 1370
+    },
+    "Vehicle stop": {
+      "count": 1094
+    },
+    "Threat of force (verbal or physical)": {
+      "count": 912
+    },
+    "Question and/or stop": {
+      "count": 696
+    },
+    "Strip-searched": {
+      "count": 556
+    },
+    "Question": {
+      "count": 527
+    },
+    "Other": {
+      "count": 461
+    },
+    "Property damaged": {
+      "count": 359
+    },
+    "Retaliatory summons": {
+      "count": 291
+    },
+    "Entry of Premises": {
+      "count": 289
+    },
+    "Refusal to obtain medical treatment": {
+      "count": 276
+    },
+    "Frisk and/or search": {
+      "count": 241
+    },
+    "Refusal to process civilian complaint": {
+      "count": 185
+    },
+    "Gun Drawn": {
+      "count": 182
+    },
+    "Seizure of property": {
+      "count": 178
+    },
+    "Failure to provide RTKA card": {
+      "count": 176
+    },
+    "Threat to damage/seize property": {
+      "count": 171
+    },
+    "Search of Premises": {
+      "count": 159
+    },
+    "Retaliatory arrest": {
+      "count": 147
+    },
+    "Refusal to show search warrant": {
+      "count": 125
+    },
+    "Forcible Removal to Hospital": {
+      "count": 120
+    },
+    "Threat of summons": {
+      "count": 111
+    },
+    "Interference with recording": {
+      "count": 111
+    },
+    "Threat to notify ACS": {
+      "count": 97
+    },
+    "Refusal to provide shield number": {
+      "count": 97
+    },
+    "Refusal to provide name": {
+      "count": 96
+    },
+    "Person Searched": {
+      "count": 94
+    },
+    "Threat of force": {
+      "count": 74
+    },
+    "Other - Abuse": {
+      "count": 70
+    },
+    "Threat of Arrest": {
+      "count": 39
+    },
+    "Premise Searched": {
+      "count": 31
+    },
+    "Property Damaged": {
+      "count": 27
+    },
+    "Search of recording device": {
+      "count": 23
+    },
+    "Vehicle Searched": {
+      "count": 22
+    },
+    "Threat re: removal to hospital": {
+      "count": 21
+    },
+    "Detention": {
+      "count": 19
+    },
+    "Photography/Videography": {
+      "count": 15
+    },
+    "Threat to Property": {
+      "count": 13
+    },
+    "Sexual Misconduct (Sexual Humiliation)": {
+      "count": 13
+    },
+    "Sex Miscon (Sexual Harassment, Verbal)": {
+      "count": 11
+    },
+    "Electronic device information deletion": {
+      "count": 11
+    },
+    "Refusal to show arrest warrant": {
+      "count": 10
+    },
+    "Gun pointed/gun drawn": {
+      "count": 9
+    },
+    "Property Seized": {
+      "count": 8
+    },
+    "Arrest/D. A. T.": {
+      "count": 6
+    },
+    "Threat of Summons": {
+      "count": 5
+    },
+    "Sh Refuse Cmp": {
+      "count": 5
+    },
+    "Sex Miscon (Sexual/Romantic Proposition)": {
+      "count": 4
+    },
+    "Improper dissemination of medical info": {
+      "count": 4
+    },
+    "Arrest/Onlooker": {
+      "count": 4
+    },
+    "Body Cavity Searches": {
+      "count": 3
+    },
+    "Gun pointed": {
+      "count": 3
+    },
+    "Sex Miscon (Sexual Harassment, Gesture)": {
+      "count": 2
+    },
+    "Failed to Obtain Language Interpretation": {
+      "count": 2
+    },
+    "Questioned immigration status": {
+      "count": 1
+    }
+  },
+  "Force": {
+    "Physical force": {
+      "count": 4849
+    },
+    "Gun Pointed": {
+      "count": 628
+    },
+    "Pepper spray": {
+      "count": 324
+    },
+    "Nightstick as club (incl asp & baton)": {
+      "count": 260
+    },
+    "Chokehold": {
+      "count": 244
+    },
+    "Push/Shove": {
+      "count": 178
+    },
+    "Hit against inanimate object": {
+      "count": 176
+    },
+    "Other - Force": {
+      "count": 134
+    },
+    "Other": {
+      "count": 124
+    },
+    "Punch/Kick": {
+      "count": 114
+    },
+    "Nonlethal restraining device": {
+      "count": 87
+    },
+    "Handcuffs too tight": {
+      "count": 76
+    },
+    "Dragged/Pulled": {
+      "count": 63
+    },
+    "Beat": {
+      "count": 57
+    },
+    "Other blunt instrument as a club": {
+      "count": 49
+    },
+    "Gun fired": {
+      "count": 38
+    },
+    "Vehicle": {
+      "count": 35
+    },
+    "Gun as club": {
+      "count": 28
+    },
+    "Nightstick/Billy/Club": {
+      "count": 25
+    },
+    "Radio as club": {
+      "count": 22
+    },
+    "Restricted Breathing": {
+      "count": 21
+    },
+    "Mace": {
+      "count": 20
+    },
+    "Flashlight as club": {
+      "count": 18
+    },
+    "Slap": {
+      "count": 14
+    },
+    "Radio As Club": {
+      "count": 13
+    },
+    "Gun As Club": {
+      "count": 12
+    },
+    "Police shield": {
+      "count": 11
+    },
+    "Flashlight As Club": {
+      "count": 10
+    },
+    "Animal": {
+      "count": 3
+    },
+    "Gun Fired": {
+      "count": 2
+    }
+  }
+}
