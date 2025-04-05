@@ -9,50 +9,22 @@
     <div class="container">
       <h1>Assignment 3: White Hat/Black Hat Visualization</h1>
 
-    <div id="vis-black-hat"></div>
-    <div id="toggle-buttons">
-        <button id="btn-race">By Race</button>
-        <button id="btn-gender">By Gender</button>
-    </div>   
-    <div class="visualization-description">
-        <div class="legend">
-          <h3>Visualization Legend</h3>
-          <div class="legend-item">
-            <div class="color-box" style="background-color: green"></div>
-            <div class="legend-text">
-              <p>
-                <strong>Max Complaints</strong>: This demographic received the most complaints. 
-              </p>
-            </div>
-          </div>
-          <div class="legend-item">
-            <div class="color-box" style="background-color: red"></div>
-            <div class="legend-text">
-              <p>
-                <strong>Min Complaints</strong>: This demographic received the least complaints. 
-              </p>
-            </div>
-          </div>
-          <div class="legend-item">
-            <div class="color-box" style="background-color: #7f7f7f"></div>
-            <div class="legend-text">
-              <p>
-                <strong>Other</strong>
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="instructions">
-            <h3>How to Use This Visualization</h3>
-            <p>
-                Each bar represents the number of complaints that a given officer demographic received.
-            </p>
-            <p>
-                The default view groups by officer race, but you can toggle to a view based on officer gender using the buttons at the bottom of the visualization.
-            </p>   
-        </div>
-      </div> 
-  </div>
+      <div class="visualization-writeup">
+        <h2>Overview</h2>
+        <p>
+          This assignment was a collaborative effort between Alston Chan and
+          Maia Gustafson. Alston focused on the white hat visualization, while
+          Maia worked on the black hat. The development process was smooth, with
+          each of us working independently in our local environments before
+          setting up a GitHub repository. We added our work to separate branches
+          and maintained clear communication throughout. Towards the end of the
+          process, we merged our contributions into a cohesive and visually
+          appealing website, which we deployed on GitHub Pages. In total, we
+          estimate that we dedicated 20-25 hours to this assignment.
+        </p>
+      </div>
+
+      <h2>White Hat Visualization</h2>
 
       <div class="data-summary">
         <div class="summary-stat">
@@ -153,21 +125,21 @@
       <div class="visualization-writeup">
         <h3>White Hat Visualization Write-up - Alston Chan</h3>
         <p>
-          This visualization presents data from the Civilian Complaints Against
-          New York City Police Officers dataset, showcasing complaints filed by
-          civilians and investigated by the Civilian Complaint Review Board
-          (CCRB). The dataset contains over 12,000 civilian complaints with
-          information about alleged misconduct, demographic details, and
-          complaint outcomes.
+          This white hat visualization presents data from the Civilian
+          Complaints Against New York City Police Officers dataset, showcasing
+          complaints filed by civilians and investigated by the Civilian
+          Complaint Review Board. The dataset contains over 12,000 civilian
+          complaints with information about alleged misconduct, demographic
+          details, and complaint outcomes.
         </p>
 
         <p>
           The visualization clearly communicates how the data has been
           transformed. The substantiated complaints (those where misconduct was
           confirmed) are consolidated into a single category for clarity, with
-          original subcategories preserved in the tooltips. This simplification
-          makes the overall patterns more digestible while maintaining access to
-          the original data granularity.
+          original subcategories preserved in the tooltips. I hoped to make the
+          overall patterns more digestible, while still maintaining access to
+          the full extent of the data.
         </p>
 
         <p>
@@ -175,34 +147,35 @@
           explore the data at multiple levels of detail, starting with the three
           main outcomes (Substantiated, Exonerated, and Unsubstantiated) and
           drilling down through misconduct types, precincts, and specific
-          allegations. This progressive disclosure prevents overwhelming the
-          viewer while enabling deep exploration.
+          allegations. I intended for the gradual revelations to prevent the
+          user from being overwhelmed.
         </p>
 
         <p>
-          The visualization features clear zoom functionality that allows users
-          to click on areas of interest and explore specific subsets of
+          The visualization features zoom functionality that allows users to
+          click on areas of interest and explore the subsets within the
           complaints. A back button and reset view option prevent users from
-          getting lost in the data. Tooltips provide detailed information about
-          each complaint, including demographic information and specific
-          outcomes.
+          getting lost or stuck in the interface. Tooltips on hover provide
+          detailed information about each complaint, including demographic
+          information and specific outcomes.
         </p>
 
         <p>
-          Summary statistics at the top provide an immediate overview of key
-          metrics. The year filter allows users to focus on specific time
-          periods without removing this context. The visualization includes a
-          comprehensive legend and instructions section that explains how to
-          interpret the data and interact with the visualization.
+          The summary statistics above the visualization provide an immediate
+          overview of the key metrics. The year filter allows users to focus on
+          specific time periods without removing this context. The visualization
+          also includes a comprehensive legend and instructions section that
+          explains how to interpret the data and interact with the
+          visualization.
         </p>
 
         <p>
-          Color coding is consistent and accessible, using distinguishable
-          colors for each outcome category. The data source section acknowledges
-          the limitations of the dataset, noting that it only includes formal
-          complaints and may not represent all police interactions. All
-          potentially misleading elements are avoided, with clear titles and
-          labels that accurately describe what is being shown.
+          Color coding is consistent, and accessible, using neutral yet
+          distinguishable colors for each outcome category. The data source
+          section acknowledges the limitations of the dataset, noting that it
+          only includes formal complaints and may not represent all police
+          interactions. All potentially misleading elements are avoided, with
+          clear titles and labels that accurately describe what is being shown.
         </p>
 
         <p>
@@ -212,7 +185,62 @@
             >Zoomable circle packing</a
           >
         </p>
+        <p>
+          Although the foundation of my code was drawn from this Observable, I
+          had to make a lot of changes to the code to fit the data and make it
+          work. The most difficult part of building this visualization was
+          transforming the raw data into the hierarchical structure. I spent a
+          significant amount of time debugging and iterating on the
+          transformation logic, as well as making sure everything looked
+          properly visually with the tooltips and zooming functionality.
+        </p>
       </div>
+
+      <h2>Black Hat Visualization</h2>
+      <div id="vis-black-hat"></div>
+      <div id="toggle-buttons">
+        <button id="btn-race">By Race</button>
+        <button id="btn-gender">By Gender</button>
+      </div> 
+    <div class="visualization-description">
+        <div class="legend">
+          <h3>Visualization Legend</h3>
+          <div class="legend-item">
+            <div class="color-box" style="background-color: green"></div>
+            <div class="legend-text">
+              <p>
+                <strong>Max Complaints</strong>: This demographic received the most complaints. 
+              </p>
+            </div>
+          </div>
+          <div class="legend-item">
+            <div class="color-box" style="background-color: red"></div>
+            <div class="legend-text">
+              <p>
+                <strong>Min Complaints</strong>: This demographic received the least complaints. 
+              </p>
+            </div>
+          </div>
+          <div class="legend-item">
+            <div class="color-box" style="background-color: #7f7f7f"></div>
+            <div class="legend-text">
+              <p>
+                <strong>Other</strong>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="instructions">
+            <h3>How to Use This Visualization</h3>
+            <p>
+                Each bar represents the number of complaints that a given officer demographic received.
+            </p>
+            <p>
+                The default view groups by officer race, but you can toggle to a view based on officer gender using the buttons at the bottom of the visualization.
+            </p>   
+        </div>
+      </div> 
+  
 
       <div class="visualization-writeup">
         <h3>Black Hat Visualization Write-up - Maia Gustafson</h3>
@@ -238,6 +266,7 @@
             common color conventions and reinforces the faulty perception implied by the previous manipulation.
           </p>
       </div>
+    </div>
     </div>
 
     <script src="https://d3js.org/d3.v7.min.js"></script>

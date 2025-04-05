@@ -60,120 +60,124 @@ function init() {
 }
 
 function drawVis() {
-    const xScale = d3.scaleBand()
-        .range([0, bhWidth])
-        .padding(0.2);
-    
-    const yScale = d3.scaleLinear()
-        .range([bhHeight, 0]);
-    
-    svg.append("g")
-       .attr("class", "x axis")
-       .attr("transform", `translate(0, ${bhHeight})`);
-    svg.append("g")
-       .attr("class", "y axis");
-    svg.append("text")
-       .attr("class", "title")
-       .attr("x", bhWidth / 2)
-       .attr("y", -bhMargin.top / 2)
-       .attr("text-anchor", "middle")
-       .style("font-size", "16px");
+  const xScale = d3.scaleBand().range([0, bhWidth]).padding(0.2);
 
-    svg.append("text")
-       .attr("class", "x axis-label")
-       .attr("x", bhWidth / 2)
-       .attr("y", bhHeight + bhMargin.bottom - 10)
-       .attr("text-anchor", "middle")
-       .text("Officer Demographic")
-       .style("font-size", "16px");
-    svg.append("text")
-       .attr("class", "y axis-label")
-       .attr("transform", "rotate(-90)")
-       .attr("x", -bhHeight / 2)
-       .attr("y", -bhMargin.left + 15)
-       .attr("text-anchor", "middle")
-       .text("Number of Complaints")
-       .style("font-size", "16px");
-    
-    function updateVis(groupByFn, titleText) {
-        const groupedData = d3.rollup(
-            allData,
-            v => v.length,
-            groupByFn
-        );
-      
-        const dataArray = Array.from(groupedData, ([category, count]) => ({ category, count }));
-        xScale.domain(dataArray.map(d => d.category));
-        yScale.domain([d3.max(dataArray, d => d.count)+2000, 0]);
-        
-        svg.select(".x.axis")
-            .transition().duration(500)
-            .call(d3.axisBottom(xScale))
-            .selectAll("text")
-            .attr("transform", "rotate(-45)")
-            .style("text-anchor", "end");
-        svg.select(".y.axis")
-            .transition().duration(500)
-            .call(d3.axisLeft(yScale));
-        svg.select(".title").text(titleText);
-        
-        const bars = svg.selectAll("rect.bar")
-            .data(dataArray, d => d.category);
+  const yScale = d3.scaleLinear().range([bhHeight, 0]);
 
-        const minCount = d3.min(dataArray, d => d.count);
-        const maxCount = d3.max(dataArray, d => d.count);
-            
-        bars.exit()
-            .transition().duration(500)
-            .attr("y", yScale(0))
-            .attr("height", 0)
-            .remove();
-            
-        bars.transition().duration(500)
-            .attr("x", d => xScale(d.category))
-            .attr("y", d => yScale(d.count))
-            .attr("width", xScale.bandwidth())
-            .attr("height", d => bhHeight - yScale(d.count))
-            .attr("fill", d => {
-                if (d.count === minCount) {
-                    return "red";  
-                } else if (d.count === maxCount) {
-                    return "green";   
-                } else {
-                    return "lightgrey";  
-                }
-            });
-            
-        bars.enter()
-            .append("rect")
-            .attr("class", "bar")
-            .attr("x", d => xScale(d.category))
-            .attr("y", yScale(0))
-            .attr("width", xScale.bandwidth())
-            .attr("height", 0)
-            .attr("fill", d => {
-                if (d.count === minCount) {
-                    return "red";  
-                } else if (d.count === maxCount) {
-                    return "green";  
-                } else {
-                    return "lightgrey";  
-                }
-            })
-            .transition().duration(500)
-            .attr("y", d => yScale(d.count))
-            .attr("height", d => bhHeight - yScale(d.count));
-    }
-    
-    updateVis(d => d.mos_ethnicity, "Number of Complaints by Officer Race");
-    
-    d3.select("#btn-race").on("click", function() {
-         updateVis(d => d.mos_ethnicity, "Number of Complaints by Officer Race");
-    });
-    
-    d3.select("#btn-gender").on("click", function() {
-         updateVis(d => d.mos_gender, "Number of Complaints by Officer Gender");
-    });
+  svg
+    .append("g")
+    .attr("class", "x axis")
+    .attr("transform", `translate(0, ${bhHeight})`);
+  svg.append("g").attr("class", "y axis");
+  svg
+    .append("text")
+    .attr("class", "title")
+    .attr("x", bhWidth / 2)
+    .attr("y", -bhMargin.top / 2)
+    .attr("text-anchor", "middle")
+    .style("font-size", "16px");
+
+  svg
+    .append("text")
+    .attr("class", "x axis-label")
+    .attr("x", bhWidth / 2)
+    .attr("y", bhHeight + bhMargin.bottom - 10)
+    .attr("text-anchor", "middle")
+    .text("Officer Demographic")
+    .style("font-size", "16px");
+  svg
+    .append("text")
+    .attr("class", "y axis-label")
+    .attr("transform", "rotate(-90)")
+    .attr("x", -bhHeight / 2)
+    .attr("y", -bhMargin.left + 15)
+    .attr("text-anchor", "middle")
+    .text("Number of Complaints")
+    .style("font-size", "16px");
+
+  function updateVis(groupByFn, titleText) {
+    const groupedData = d3.rollup(allData, (v) => v.length, groupByFn);
+
+    const dataArray = Array.from(groupedData, ([category, count]) => ({
+      category,
+      count,
+    }));
+    xScale.domain(dataArray.map((d) => d.category));
+    yScale.domain([d3.max(dataArray, (d) => d.count) + 2000, 0]);
+
+    svg
+      .select(".x.axis")
+      .transition()
+      .duration(500)
+      .call(d3.axisBottom(xScale))
+      .selectAll("text")
+      .attr("transform", "rotate(-45)")
+      .style("text-anchor", "end");
+    svg.select(".y.axis").transition().duration(500).call(d3.axisLeft(yScale));
+    svg.select(".title").text(titleText);
+
+    const bars = svg.selectAll("rect.bar").data(dataArray, (d) => d.category);
+
+    const minCount = d3.min(dataArray, (d) => d.count);
+    const maxCount = d3.max(dataArray, (d) => d.count);
+
+    bars
+      .exit()
+      .transition()
+      .duration(500)
+      .attr("y", yScale(0))
+      .attr("height", 0)
+      .remove();
+
+    bars
+      .transition()
+      .duration(500)
+      .attr("x", (d) => xScale(d.category))
+      .attr("y", (d) => yScale(d.count))
+      .attr("width", xScale.bandwidth())
+      .attr("height", (d) => bhHeight - yScale(d.count))
+      .attr("fill", (d) => {
+        if (d.count === minCount) {
+          return "red";
+        } else if (d.count === maxCount) {
+          return "green";
+        } else {
+          return "lightgrey";
+        }
+      });
+
+    bars
+      .enter()
+      .append("rect")
+      .attr("class", "bar")
+      .attr("x", (d) => xScale(d.category))
+      .attr("y", yScale(0))
+      .attr("width", xScale.bandwidth())
+      .attr("height", 0)
+      .attr("fill", (d) => {
+        if (d.count === minCount) {
+          return "red";
+        } else if (d.count === maxCount) {
+          return "green";
+        } else {
+          return "lightgrey";
+        }
+      })
+      .transition()
+      .duration(500)
+      .attr("y", (d) => yScale(d.count))
+      .attr("height", (d) => bhHeight - yScale(d.count));
+  }
+
+  updateVis((d) => d.mos_ethnicity, "Number of Complaints by Officer Race");
+
+  d3.select("#btn-race").on("click", function () {
+    updateVis((d) => d.mos_ethnicity, "Number of Complaints by Officer Race");
+  });
+
+  d3.select("#btn-gender").on("click", function () {
+    updateVis((d) => d.mos_gender, "Number of Complaints by Officer Gender");
+  });
 }
 
 function drawVis() {

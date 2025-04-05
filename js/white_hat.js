@@ -140,7 +140,6 @@ function createCirclePacking(data) {
 
   currentFocus = root;
 
-  // svg setup
   whSvg = d3
     .select("#vis-white-hat")
     .append("svg")
@@ -372,11 +371,7 @@ function createCirclePacking(data) {
     .style("font-weight", (d) => (d.depth === 1 ? "bold" : "normal"))
     .style("fill", (d) => {
       if (d.depth === 1) {
-        // High contrast text color for top level categories
         return "white";
-      } else if (d.depth === 2) {
-        // Darker text for better visibility on lighter backgrounds
-        return "#111";
       } else {
         return "#333";
       }
@@ -405,27 +400,6 @@ function createCirclePacking(data) {
       return "";
     });
 
-  // Add background rectangles for better text contrast at level 2
-  const labelBackgrounds = g
-    .append("g")
-    .attr("pointer-events", "none")
-    .selectAll("rect")
-    .data(root.descendants().filter((d) => d.depth === 2))
-    .join("rect")
-    .attr("class", "label-background")
-    .attr("rx", 3)
-    .attr("ry", 3)
-    .attr("fill", "rgba(255, 255, 255, 0.7)")
-    .attr("width", (d) => d.data.name.length * 6)
-    .attr("height", 15)
-    .attr("x", (d) => d.x - d.data.name.length * 3)
-    .attr("y", (d) => d.y - 7)
-    .style("display", "none");
-
-  // Make sure text is above background rects
-  g.selectAll(".circle-label").raise();
-
-  // Ensure proper ordering for the tooltip
   tooltipDiv.style("font-family", "Arial, sans-serif");
 
   // setup zoom
@@ -445,7 +419,6 @@ function createCirclePacking(data) {
       )
       .attr("r", (d) => Math.max(0.5, d.r * k));
 
-    // Simplify display condition
     node.style("display", (d) =>
       d.depth >= 5 && focus.depth < 4 ? "none" : null
     );
@@ -459,19 +432,7 @@ function createCirclePacking(data) {
       (d) => `translate(${(d.x - v[0]) * k},${(d.y - v[1]) * k})`
     );
 
-    labelBackgrounds
-      .attr(
-        "transform",
-        (d) =>
-          `translate(${(d.x - v[0]) * k - d.data.name.length * 3},${
-            (d.y - v[1]) * k - 7
-          })`
-      )
-      .attr("width", (d) => d.data.name.length * 6 * k)
-      .attr("height", 15 * k)
-      .style("display", (d) => (d.parent === focus ? "inline" : "none"));
-
-    // Show title only at the root level
+    // show title only at the root level
     titleContainer.style("opacity", focus === root ? 1 : 0);
     titleContainer.style("display", focus === root ? "inline" : "none");
 
@@ -484,28 +445,14 @@ function createCirclePacking(data) {
   function zoom(event, d) {
     focus = d;
 
-    // Unified label display logic
     const updateLabels = (isRoot) => {
       const parent = isRoot ? root : focus;
       label
         .style("fill-opacity", (d) => (d.parent === parent ? 1 : 0))
         .style("display", (d) => (d.parent === parent ? "inline" : "none"));
-
-      labelBackgrounds.style("display", (d) =>
-        !isRoot && d.parent === focus && d.depth === 2 ? "inline" : "none"
-      );
     };
 
     updateLabels(d === root);
-
-    // show title only at root level
-    titleContainer
-      .transition()
-      .duration(750)
-      .style("opacity", focus === root ? 1 : 0)
-      .on("end", function () {
-        d3.select(this).style("display", focus === root ? "inline" : "none");
-      });
 
     const duration = event.altKey ? 7500 : 750;
     const startTime = Date.now();
@@ -525,7 +472,6 @@ function createCirclePacking(data) {
       if (t < 1) {
         requestAnimationFrame(animateZoom);
       } else {
-        // Apply final label states
         updateLabels(d === root);
       }
     };
