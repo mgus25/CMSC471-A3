@@ -9,12 +9,34 @@
   <div class="container">
     <h1>Assignment 3: White Hat/Black Hat Visualization</h1>
 
-    <h3>Black Hat Visulization</h3>
+    <h2>Black Hat Visulization</h3>
     <div id="vis-black-hat"></div>
     <div id="toggle-buttons">
         <button id="btn-race">By Race</button>
         <button id="btn-gender">By Gender</button>
-    </div>      
+    </div>    
+    <p>
+        This visualization shows the number of complaints filed against police officers. The graph provides insight 
+        into how these complaints break down by officer demographics. The first view of the graph shows complaints 
+        by officer race, while the second view shows complaints by officer gender. This is a black hat visualization, 
+        so the goal during the design process was to give a false impression regarding which demographics receive 
+        the most complaints. Two techniques were utilized to achieve this effect:
+      </p>
+      <ol>
+        <li>Labels: Axis manipulation</li>
+        <li>Encoding: Color choice</li>
+      </ol>
+      <p>
+        You will notice that the y-axis is actually flipped. This means the maximum number of complaints appears at 
+        the bottom of the graph, while zero complaints is at the top. This results in more complaints being 
+        represented with small bar lines and fewer complaints being represented with large bar lines. This is 
+        counterintuitive and contrary to bar chart norms, meaning the viewer may reach a false conclusion about 
+        the data unless they inspect the y-axis values. The second misleading component is the color encoding. 
+        We commonly associate green with "good" and red with "bad." In the visualization, the highest number of 
+        complaints is shown in green while the lowest number of complaints is shown in red. This is contrary to 
+        common color conventions and reinforces the faulty perception implied by the previous manipulation.
+      </p>
+      
       
   </div>
 

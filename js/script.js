@@ -71,6 +71,22 @@ function drawVis() {
        .attr("y", -bhMargin.top / 2)
        .attr("text-anchor", "middle")
        .style("font-size", "16px");
+
+    svg.append("text")
+       .attr("class", "x axis-label")
+       .attr("x", bhWidth / 2)
+       .attr("y", bhHeight + bhMargin.bottom - 10)
+       .attr("text-anchor", "middle")
+       .text("Officer Demographic")
+       .style("font-size", "16px");
+    svg.append("text")
+       .attr("class", "y axis-label")
+       .attr("transform", "rotate(-90)")
+       .attr("x", -bhHeight / 2)
+       .attr("y", -bhMargin.left + 15)
+       .attr("text-anchor", "middle")
+       .text("Number of Complaints")
+       .style("font-size", "16px");
     
     function updateVis(groupByFn, titleText) {
         const groupedData = d3.rollup(
